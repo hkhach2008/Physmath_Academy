@@ -9,7 +9,7 @@ const Subjects = () => {
 
 
 
-    const [data, setData] = useState([]);
+    const [subjects, setSubject] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -22,7 +22,7 @@ const Subjects = () => {
                 return response.json();
             })
             .then(data => {
-                setData(data);
+                setSubject(data);
                 setLoading(false);
             })
             .catch(error => {
@@ -34,29 +34,6 @@ const Subjects = () => {
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
 
-    const subjects = [
-        {
-            name: "Մաթեմատիկա",
-            img: maths,
-            text: "Հայտնի է, որ ընթերցողը, կարդալով հասկանալի տեքստ, չի կարողանա կենտրոնանալ տեքստի ձևավորման վրա: Lorem Ipsum օգտագործելը բացատրվում է նրանով, որ այն բաշխում է բառերը քիչ թե շատ իրականի նման, ի տարբերություն «Բովանդակություն, բովանդակություն» սովորական կրկննության, ինչը ընթերցողի համար հասկանալի է: ",
-            active: true,
-            to: "/courses/maths"
-        },
-        {
-            name: "Ֆիզիկա",
-            img: physics,
-            text: "Հայտնի է, որ ընթերցողը, կարդալով հասկանալի տեքստ, չի կարողանա կենտրոնանալ տեքստի ձևավորման վրա: Lorem Ipsum օգտագործելը բացատրվում է նրանով, որ այն բաշխում է բառերը քիչ թե շատ իրականի նման, ի տարբերություն «Բովանդակություն, բովանդակություն» սովորական կրկննության, ինչը ընթերցողի համար հասկանալի է: ",
-            active: false,
-            to: "/"
-        },
-        {
-            name: "Ինֆորմատիկա",
-            img: informatics,
-            text: "Հայտնի է, որ ընթերցողը, կարդալով հասկանալի տեքստ, չի կարողանա կենտրոնանալ տեքստի ձևավորման վրա: Lorem Ipsum օգտագործելը բացատրվում է նրանով, որ այն բաշխում է բառերը քիչ թե շատ իրականի նման, ի տարբերություն «Բովանդակություն, բովանդակություն» սովորական կրկննության, ինչը ընթերցողի համար հասկանալի է: ",
-            active: false,
-            to: "/"
-        },
-    ];
 
     return (
         <section className={styles.subjects}>
@@ -65,15 +42,14 @@ const Subjects = () => {
                 {subjects.map((subject, idx) => (
                     <Subject
                         key={idx}
-                        img={subject.img}
-                        name={subject.name}
-                        text={subject.text}
-                        to={subject.to}
-                        active={subject.active}
+                        img={`http://localhost:8000${subject.img}`}
+                        name={subject.title}
+                        text={subject.description}
+                        to={subject.subjectstatus ? `/courses/${subject.link}` : '/'}
+                        active={subject.subjectstatus}
                     />
                 ))}
             </div>
-            <img src={`http://localhost:8000${data["all subjects"][1].img}`} alt="" />
         </section>
     );
 }
