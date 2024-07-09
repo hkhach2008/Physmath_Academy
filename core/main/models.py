@@ -1,15 +1,5 @@
 from django.db import models
 from django.core.validators import FileExtensionValidator
-# class SubjectStatus(models.Model):
-#     status = models.CharField(max_length=100)
-
-#     def __str__(self):
-#         return self.status
-
-#     class Meta:
-#         verbose_name = "SubjectStatus"
-#         verbose_name_plural = "SubjectStatuses"
-
 
 class Subject(models.Model):
     title = models.CharField("Subject name", max_length=200)

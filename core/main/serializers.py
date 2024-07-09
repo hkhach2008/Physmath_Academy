@@ -5,7 +5,8 @@ class SubjectSerializer(serializers.Serializer):
     title = serializers.CharField(max_length=200)
     description = serializers.CharField()
     img = serializers.ImageField()
-    subjectstatus = serializers.CharField(max_length=100) 
+    subjectstatus = serializers.BooleanField()
+    link = serializers.CharField(max_length=100)
 
 
 class UserSerializer(serializers.ModelSerializer):
