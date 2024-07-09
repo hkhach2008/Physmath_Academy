@@ -13,7 +13,7 @@ from .serializers import *
 class SubjectAPIView(APIView):
     def get(self, request):
         subject = Subject.objects.all()
-        return Response({"all subjects": SubjectSerializer(subject, many=True).data})
+        return Response(SubjectSerializer(subject, many=True).data)
 
 
 @api_view(['POST'])
