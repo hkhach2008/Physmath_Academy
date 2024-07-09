@@ -1,0 +1,155 @@
+.main {
+    width: 100%;
+    background: #C4EBFD;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+}
+
+.content {
+    width: 54.8%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding-left: 7vw;
+
+    & .slogan {
+        font-weight: 700;
+        font-size: 2.396vw;
+    }
+
+    & .text {
+        margin-top: 1.0417vw;
+        font-size: 1.5104vw;
+        color: #333333;
+    }
+
+    .counts {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin-top: 2.0833vw;
+
+        & .count {
+            display: flex;
+            flex-flow: column;
+            margin-left: 60px;
+            opacity: 0;
+
+            &:first-child {
+                margin: 0;
+                opacity: 1;
+            }
+
+            &:nth-child(2) {
+                animation: second 0.5s linear forwards;
+                animation-delay: 3.5s;
+            }
+
+            &:last-child {
+                animation: third 0.5s linear forwards;
+                animation-delay: 7s;
+            }
+
+            @keyframes second {
+                from {
+                    opacity: 0;
+                }
+
+                to {
+                    opacity: 1;
+                }
+            }
+
+            @keyframes third {
+                from {
+                    opacity: 0;
+                }
+
+                to {
+                    opacity: 1;
+                }
+            }
+
+            &_num {
+                font-size: 2.0833vw;
+                font-weight: 700;
+            }
+
+            &_txt {
+                font-size: 0.8333vw;
+                color: #333333;
+            }
+        }
+    }
+
+    & .button {
+        padding: 10px 28px;
+        color: #333333;
+        font-weight: 500;
+        font-size: 16px;
+        background: linear-gradient(90deg, #00D5AF80, #6C63FF);
+        border-radius: 44px;
+        text-decoration: none;
+        margin-top: 2.0833vw;
+    }
+}
+
+.img {
+    width: 45.2%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & img {
+        width: 90%;
+    }
+}
+
+@media (max-width: 768px) {
+    .main {
+        flex-flow: column-reverse;
+    }
+
+    .img {
+        width: 60%;
+    }
+
+    .content {
+        width: 100%;
+        padding: 2rem;
+        align-items: center;
+        text-align: center;
+
+        & .slogan {
+            font-size: 18px;
+        }
+
+        & .text {
+            font-size: 14px;
+        }
+
+        & .button {
+            font-size: 16px;
+            margin-top: 3vw;
+        }
+
+        .counts {
+            & .count {
+                &_num {
+                    font-size: 21px;
+                }
+
+                &_txt {
+                    font-size: 11px;
+                }
+            }
+        }
+    }
+}
