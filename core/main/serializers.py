@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
+from .models import UserProfile
 
 class SubjectSerializer(serializers.Serializer):
     title = serializers.CharField(max_length=200)
@@ -10,17 +11,15 @@ class SubjectSerializer(serializers.Serializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
+    school = serializers.CharField(max_length=100, required=False)
+    region = serializers.CharField(max_length=100, required=False)
+
     class Meta:
         model = User
-        fields = ["id", "username", "password", "email"]
+        fields = ["id", "username", "password", "email", "school", "region"]
         extra_kwargs = {
             'password': {'write_only': True}
         }
-
-    def validate_email(self, value):
-        if User.objects.filter(email=value).exists():
-            raise serializers.ValidationError("A user with that email already exists.")
-        return value
 
     def create(self, validated_data):
         user = User(
@@ -29,4 +28,11 @@ class UserSerializer(serializers.ModelSerializer):
         )
         user.set_password(validated_data['password'])
         user.save()
+
+        user_profile = UserProfile.objects.create(
+            user=user,
+            school=validated_data.get('school', ''),
+            region=validated_data.get('region', '')
+        )
+
         return user
